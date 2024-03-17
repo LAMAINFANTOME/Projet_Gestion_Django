@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
 
-    <link rel="stylesheet" href="{% static 'css/aos.css' %}url '">
+    <link rel="stylesheet" href="{% static 'css/aos.css' %}">
 
     <link rel="stylesheet" href="{% static 'css/ionicons.min.css' %}">
 
@@ -58,12 +58,13 @@
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav ml-auto">
-				<li class="nav-item"><a href="{% url 'index' %}" class="nav-link">Home</a></li>
-				<li class="nav-item"><a href="{% url 'shop' %}" class="nav-link">Shop</a></li>
-				<li class="nav-item active"><a href="{% url 'product-single' annonce.id %}" class="nav-link">Single Product</a></li>
-				<li class="nav-item"><a href="{% url 'about' %}" class="nav-link">About</a></li>
-				<li class="nav-item"><a href="{% url 'contact' %}" class="nav-link">Contact</a></li>
-			  </ul>
+	          <li class="nav-item active"><a href="{% url 'index' %}" class="nav-link">Home</a></li>
+	          <li class="nav-item"><a href="{% url 'shop' %}" class="nav-link">Shop</a></li>
+	          <li class="nav-item"><a href="{% url 'about' %}" class="nav-link">About</a></li>
+	          <li class="nav-item"><a href="{% url 'contact' %}" class="nav-link">Contact</a></li>
+	          <li class="nav-item"><a href="{% url 'connexion' %}" class="nav-link">Login</a></li>
+	          <li class="nav-item"><a href="{% url 'inscription' %}" class="nav-link">Register</a></li>
+	        </ul>
 	      </div>
 	    </div>
 	  </nav>
@@ -73,92 +74,48 @@
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
-          	<p class="breadcrumbs"><span class="mr-2"><a href="{% url 'index' %}">Home</a></span> <span>Shop</span></p>
-            <h1 class="mb-0 bread">Shop</h1>
+          	<p class="breadcrumbs"><span class="mr-2"><a href="{% url 'index' %}">Home</a></span> <span>Admin</span></p>
+            <h1 class="mb-0 bread">Admin</h1>
           </div>
         </div>
       </div>
     </div>
 
-    <section class="ftco-section">
-    	<div class="container">
-    		<div class="row">
-    			<div class="col-lg-6 product-details pl-md-5 ftco-animate">
-    				<h3>{{ annonce.titre }}</h3>
-    				<p class="price"><span>${{ annonce.prix }}</span></p>
-    				<p>{{ annonce.description }}</p>
-	          	</div>
-          	</div>
-          	</div>
-    		</div>
-
-
-
-
-    		<div class="row mt-5">
-          <div class="col-md-12 nav-link-wrap">
-            <div class="nav nav-pills d-flex text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-              <a class="nav-link ftco-animate active mr-lg-1" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1" role="tab" aria-controls="v-pills-1" aria-selected="true">Description</a>
-
-              <a class="nav-link ftco-animate" id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3" role="tab" aria-controls="v-pills-3" aria-selected="false">Reviews</a>
-
-            </div>
-          </div>
-          <div class="col-md-12 tab-wrap">
-            
-            <div class="tab-content bg-light" id="v-pills-tabContent">
-
-              <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="day-1-tab">
-              	<div class="p-4">
-	              	<h3 class="mb-4">Nike Free RN 2019 iD</h3>
-	              	<p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country. But nothing the copy said could convince her and so it didn’t take long until a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and dragged her into their agency, where they abused her for their.</p>
-              	</div>
-              </div>
-
-              <div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-day-2-tab">
-              	<div class="p-4">
-	              	<h3 class="mb-4">Manufactured By Nike</h3>
-	              	<p>On her way she met a copy. The copy warned the Little Blind Text, that where it came from it would have been rewritten a thousand times and everything that was left from its origin would be the word "and" and the Little Blind Text should turn around and return to its own, safe country. But nothing the copy said could convince her and so it didn’t take long until a few insidious Copy Writers ambushed her, made her drunk with Longe and Parole and dragged her into their agency, where they abused her for their.</p>
-              	</div>
-              </div>
-              <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-day-3-tab">
-              	<div class="row p-4">
-						   		<div class="col-md-7">
-						   			<h3 class="mb-4">23 Reviews</h3>
-								   	<div class="review">
-										{% for commentaire in commentaires%}
-								   		<div class="desc">
-								   			<h4>
-								   				<span class="text-left">{{commentaire.autor}}</span>
-								   				<span class="text-right">{{commentaire.date_commentaire}}</span>
-								   			</h4>
-								   			<p>{{commentaire.contenu}}</p>
-								   		</div>
-										{%endfor%}
-								   	</div>
-						   		</div>
-						   		<div class="col-md-4">
-						   			<div class="rating-wrap">
-							   			<h3 class="mb-4">Give a Review</h3>
-							   			<form method="POST" action="#" class="bg-white p-5 contact-form">
-											{% csrf_token %}
-											<div class="form-group">
-											  <textarea name="message" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
-											</div>
-											<div class="form-group">
-											  <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
-											</div>
-										  </form>
-							   		</div>
-						   		</div>
-						   	</div>
-              </div>
-            </div>
-          </div>
-        </div>
-    	</div>
+    <section class="ftco-section contact-section bg-light">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Annonce Id</th>
+                    <th>Nom</th>
+                    <th>Categorie</th>
+                    <th>Auteur</th>
+                    <th>Statut</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for annonce in annonces %}
+                    <tr>
+                        <td>{{annonce.id}}</td>
+                        <td>{{annonce.titre}}</td>
+                        <td>{{annonce.categorie}}</td>
+                        <td>{{annonce.autor}}</td>
+                        <td>{{annonce.status}}</td>
+                        <td>
+                            <form action="" method="POST">
+                                {% csrf_token %}  
+                                <input type="hidden" name="titre" value="{{annonce.titre}}">
+                                {% if annonce.status == False %}
+                                    <button class="btn btn-primary btn-sm" type="submit" name="form1_submit">Approuver</button>
+                                {% endif %}
+                                <button class="btn btn-danger btn-sm" type="submit" name="form2_submit">Supprimer</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </section>
-		
 
     <footer class="ftco-footer ftco-section">
       <div class="container">
@@ -256,43 +213,6 @@
   <script src="{% static 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false' %}"></script>
   <script src="{% static 'js/google-map.js' %}"></script>
   <script src="{% static 'js/main.js' %}"></script>
-
-  <script>
-		$(document).ready(function(){
-
-		var quantitiy=0;
-		   $('.quantity-right-plus').click(function(e){
-		        
-		        // Stop acting like a button
-		        e.preventDefault();
-		        // Get the field name
-		        var quantity = parseInt($('#quantity').val());
-		        
-		        // If is not undefined
-		            
-		            $('#quantity').val(quantity + 1);
-
-		          
-		            // Increment
-		        
-		    });
-
-		     $('.quantity-left-minus').click(function(e){
-		        // Stop acting like a button
-		        e.preventDefault();
-		        // Get the field name
-		        var quantity = parseInt($('#quantity').val());
-		        
-		        // If is not undefined
-		      
-		            // Increment
-		            if(quantity>0){
-		            $('#quantity').val(quantity - 1);
-		            }
-		    });
-		    
-		});
-	</script>
     
   </body>
 </html>

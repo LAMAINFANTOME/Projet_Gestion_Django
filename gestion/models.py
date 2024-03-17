@@ -23,7 +23,6 @@ class Annonce(models.Model):
     date_post = models.DateTimeField(auto_now_add=True)
     categorie = models.ForeignKey(Categorie,on_delete=models.CASCADE,related_name="announce")
     autor = models.ForeignKey(User,on_delete=models.CASCADE,related_name="announce")
-    image = models.ImageField(upload_to = "gestion")
     status = models.BooleanField(default= False)
     def __str__(self) :
         return self.titre

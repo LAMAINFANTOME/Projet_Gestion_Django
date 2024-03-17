@@ -72,7 +72,6 @@ def annonce (request):
         titre = request.POST.get('titre')
         categorie = request.POST.get('categorie')
         prix = request.POST.get('prix')
-        image = request.FILES.get('image')
         description = request.POST.get('description')
         categorie_final = Categorie.objects.get(nom=categorie)
         announce = Annonce()
@@ -80,7 +79,6 @@ def annonce (request):
         announce.categorie = categorie_final
         announce.prix = prix
         announce.description = description
-        announce.image = image
         announce.autor = user
         announce.save()
         return redirect('annonce')
@@ -140,5 +138,24 @@ def connexion(request):
 
     return render(request,"connexion.html")
 
+def admin(request):
+    annonces = Annonce.objects.all()
+    if request.method =='POST':
+        if 'form1_submit' in request.POST:
+            titre = request.POST.get('titre')
+            ad_app = Annonce.objects.get(titre=titre)
+            ad_app.status = 'True'
+            ad_app.save()
+            return redirect('admin_site')
 
+        # Action pour le deuxième formulaire
+        if 'form2_submit' in request.POST:
+            titre = request.POST.get('titre')
+            ad_app = Annonce.objects.get(titre=titre)
+            ad_app.delete()
+            return redirect('admin_site')
+    datas={
+        'annonces': annonces
+    }
+    return render(request, 'admin.html', datas)
 

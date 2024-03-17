@@ -26,4 +26,5 @@ urlpatterns = [
     path('contact/',views.contact,name='contact'),
     path('blog-single/',views.blogsingle,name='blogsingle'),
     path('annonce/',views.annonce,name='annonce'),
+    path('admin_site/',views.admin,name='admin_site'),
 ]

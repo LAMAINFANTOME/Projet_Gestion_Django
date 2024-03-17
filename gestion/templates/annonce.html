@@ -71,7 +71,7 @@
 	  </nav>
     <!-- END nav -->
 
-    <div class="hero-wrap hero-bread" style="background-image: url('images/bg_6.jpg');">
+    <div class="hero-wrap hero-bread" style="background-image: url('{% static 'images/bg_6.jpg' %}');">
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
@@ -86,7 +86,7 @@
       <div class="container">
         <div class="row block-9">
           <div class="col-md-6 order-md-last d-flex">
-            <form action="#" method="POST" class="bg-white p-5 contact-form" enctype="multipart/form-data">
+            <form action="#" method="POST" class="bg-white p-5 contact-form">
               {% csrf_token %}
               <div class="form-group">
                 <input type="text" name="titre" class="form-control" placeholder="Name">
@@ -101,9 +101,6 @@
               </div>
               <div class="form-group">
                 <input type="number" name="prix" class="form-control" placeholder="Prix" required>
-              </div>
-              <div class="form-group">
-                <input type="file" name="image" class="form-control" placeholder="Image" accept="image/*" required>
               </div>
               <div class="form-group">
                 <textarea name="description" id="" cols="30" rows="7" class="form-control" placeholder="description"></textarea>
